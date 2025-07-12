@@ -22,12 +22,24 @@
       min-height: 100vh;
     }
 
-    header, footer {
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       background-color: #111;
       color: #f0f0f0;
       text-align: center;
       padding: 20px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    footer {
+      position: static;
+      background-color: #111;
+      color: #f0f0f0;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
     }
 
     header h2 {
@@ -144,12 +156,6 @@
       font-size: 0.7em;
       padding: 4px 10px;
       border-radius: 6px;
-    }
-
-    footer {
-      font-size: 1em;
-      color: #aaa;
-      border-top: 1px solid #333;
     }
 
     /* Responsive Tweaks */
