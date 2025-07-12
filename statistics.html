@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Statistics Calculator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1a1a1a, #2b2b2b);
+      color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 30px 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 25px;
+      color: #f5c542;
+      text-shadow: 0 2px 6px rgba(255, 215, 0, 0.3);
+      text-align: center;
+    }
+
+    .calculator {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1em;
+      border-radius: 12px;
+      border: none;
+      background-color: #222;
+      color: #fff;
+      margin-bottom: 20px;
+      resize: vertical;
+      height: 100px;
+      text-align: center;
+      box-shadow: inset 0 0 5px rgba(255,255,255,0.05);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 1.1em;
+      background: #f5c542;
+      color: #000;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #ffd700;
+      transform: scale(1.03);
+    }
+
+    .result {
+      margin-top: 25px;
+      font-size: 1.2em;
+      line-height: 1.7;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 15px 20px;
+      box-shadow: inset 0 0 8px rgba(255,255,255,0.03);
+    }
+
+    a.back {
+      margin-top: 30px;
+      display: inline-block;
+      text-align: center;
+      font-size: 1em;
+      color: #fff;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 10px 20px;
+      border-radius: 10px;
+      transition: 0.3s ease;
+    }
+
+    a.back:hover {
+      background: rgba(255, 255, 255, 0.35);
+      color: #000;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      textarea {
+        font-size: 1em;
+      }
+
+      .result {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Statistics Calculator</h1>
+
+  <div class="calculator">
+    <textarea id="dataInput" placeholder="Enter numbers separated by commas (e.g. 4, 8, 6, 2)"></textarea>
+    <button onclick="calculateStats()">Calculate</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <a class="back" href="index.html">⬅ Back to Home</a>
+
+  <script>
+    function calculateStats() {
+      const input = document.getElementById("dataInput").value;
+      const numbers = input.split(",").map(n => parseFloat(n.trim())).filter(n => !isNaN(n));
+
+      if (numbers.length === 0) {
+        document.getElementById("result").innerText = "⚠️ Please enter valid numbers.";
+        return;
+      }
+
+      const mean = numbers.reduce((a, b) => a + b, 0) / numbers.length;
+
+      const sorted = [...numbers].sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      const median = sorted.length % 2 === 0 ? (sorted[mid - 1] + sorted[mid]) / 2 : sorted[mid];
+
+      const freq = {};
+      numbers.forEach(n => freq[n] = (freq[n] || 0) + 1);
+      const maxFreq = Math.max(...Object.values(freq));
+      const mode = Object.keys(freq).filter(k => freq[k] === maxFreq).map(Number);
+
+      const variance = numbers.reduce((sum, num) => sum + Math.pow(num - mean, 2), 0) / numbers.length;
+      const stdDev = Math.sqrt(variance);
+
+      document.getElementById("result").innerHTML = `
+        <strong>Mean:</strong> ${mean.toFixed(2)}<br/>
+        <strong>Median:</strong> ${median.toFixed(2)}<br/>
+        <strong>Mode:</strong> ${mode.join(", ")}<br/>
+        <strong>Standard Deviation:</strong> ${stdDev.toFixed(2)}
+      `;
+    }
+  </script>
+
+</body>
+</html>

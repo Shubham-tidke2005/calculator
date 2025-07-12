@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scientific Calculator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1a1a1a, #2b2b2b);
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header, footer {
+      background-color: #111;
+      color: #f0f0f0;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    header h2 {
+      font-size: 2.8rem;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 40px;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #f5c542;
+      margin-bottom: 40px;
+      text-shadow: 0 2px 6px rgba(255, 215, 0, 0.3);
+      text-align: center;
+    }
+
+    .trial-button {
+      background: linear-gradient(135deg, #555, #777);
+      color: #fff;
+      padding: 18px 50px;
+      font-size: 1.2em;
+      font-weight: bold;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 50px;
+    }
+
+    .trial-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+    }
+
+    .button-icon {
+      margin-right: 10px;
+    }
+
+    .features-title {
+      font-size: 2.2em;
+      font-weight: 600;
+      margin: 30px 0 20px;
+      color: #ccc;
+      text-align: center;
+    }
+
+    .features-wrapper {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .feature-box {
+      background-color: #2a2a2a;
+      color: #ddd;
+      padding: 35px 25px;
+      border-radius: 16px;
+      border: 1px solid #444;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(255, 193, 7, 0.2);
+      border-color: #888;
+    }
+
+    .feature-icon {
+      font-size: 2.7em;
+      color: #f5c542;
+      margin-bottom: 15px;
+    }
+
+    .feature-box div {
+      font-size: 1.1em;
+      font-weight: 500;
+    }
+
+    .highlighted {
+      background-color: #333;
+      border-color: #888;
+    }
+
+    .new-feature::after {
+      content: "NEW!";
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background-color: #e91e63;
+      color: white;
+      font-size: 0.7em;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    footer {
+      font-size: 1em;
+      color: #aaa;
+      border-top: 1px solid #333;
+    }
+
+    /* Responsive Tweaks */
+    @media (max-width: 992px) {
+      header h2 {
+        font-size: 2.2rem;
+      }
+
+      h1 {
+        font-size: 2.2em;
+      }
+
+      .trial-button {
+        font-size: 1em;
+        padding: 14px 30px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+      }
+
+      .features-title {
+        font-size: 1.6em;
+      }
+
+      .trial-button {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .feature-box {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Scientific Calculator</h2>
+  </header>
+
+  <main>
+    <h1>"Think It. Type It. Solve It."</h1>
+
+    <button class="trial-button" onclick="location.href='signup.html'">
+      <span class="button-icon">✨</span> Start Your Free Trial Now!
+    </button>
+
+    <div class="features-title">Explore Our Powerful Features:</div>
+
+    <div class="features-wrapper">
+      <div class="features">
+        <div class="feature-box" onclick="location.href='trigonometry.html'">
+          <span class="feature-icon">📐</span>
+          <div>Basic Trigonometric Functions</div>
+        </div>
+
+        <div class="feature-box highlighted new-feature" onclick="location.href='graphing.html'">
+          <span class="feature-icon">📈</span>
+          <div>Intuitive Graphing Capabilities</div>
+        </div>
+
+        <div class="feature-box" onclick="location.href='arithmetic.html'">
+          <span class="feature-icon">🧮</span>
+          <div>Basic & Complex Arithmetic</div>
+        </div>
+
+        <div class="feature-box" onclick="location.href='unit-conversion.html'">
+          <span class="feature-icon">🔢</span>
+          <div>Extensive Unit Conversions</div>
+        </div>
+
+        <div class="feature-box" onclick="location.href='statistics.html'">
+          <span class="feature-icon">📊</span>
+          <div>Detailed Statistical Analysis Tools</div>
+        </div>
+
+        <div class="feature-box" onclick="location.href='scientific-notation.html'">
+          <span class="feature-icon">🧪</span>
+          <div>Full Scientific Notation Support</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Shubham. All rights reserved.
+  </footer>
+
+</body>
+</html>
